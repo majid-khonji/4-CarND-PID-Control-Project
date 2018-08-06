@@ -3,6 +3,20 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
+# Reflection
+
+![Screen shot](screenshot.png)
+
+The tuning part is done manually based on individual properties of each PID term. Initially I set one term to 1 and the rest to zero to observe its effect on the steering command.
+
+The proportional term adjusts steering in proportion to cte which is useful for quick reaction, e.g., on sharp turns. However, it causes oscillation which eventually leads to running off the track. 
+
+Differential term is a function of difference of subsequent cte over two time slots. It smooths out steering and prevents (if set higher weight) fast steering changes. I noticed higher values will affects reaction time in sharp turns therefore I set it to a small value.
+
+The integral term adjusts for bias in calibration and incorporates history, making the path also smoother.
+
+The final configuration is ``pid.Init(.14, 0.01, 2);`` 
+
 ## Dependencies
 
 * cmake >= 3.5
